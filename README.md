@@ -14,7 +14,7 @@ Use Secret Text in Management-Credentials, no "aws credentials".
 ```
 ```
 pipeline {
-    agent any // <--- Esto equivale al 'node' y soluciona el error
+    agent any 
     
     stages {
         stage('EKS Check') {
@@ -35,6 +35,7 @@ pipeline {
     }
 }
 ```
+
 
 
 
