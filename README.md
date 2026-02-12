@@ -13,23 +13,29 @@ https://aws.plainenglish.io/building-an-end-to-end-ci-cd-pipeline-with-jenkins-a
 Use Secret Text in Management-Credentials, no "aws credentials".
 ```
 ```
-node {
-    stage('Deploy to EKS') {
-        withCredentials([
-            string(credentialsId: 'aws-access-key-id', variable: 'AWS_ACCESS_KEY_ID'),
-            string(credentialsId: 'aws-secret-access-key', variable: 'AWS_SECRET_ACCESS_KEY'),
-            string(credentialsId: 'aws-session-token', variable: 'AWS_SESSION_TOKEN')
-        ]) {
-            // Ahora 'sh' sí sabe dónde ejecutarse
-            sh "aws eks update-kubeconfig --name demo-cluster --region us-east-1"
-            sh "kubectl get pods"
-            sh 'cat /etc/os-release' 
-            sh 'whoami'             
-            sh 'aws --version'     
+pipeline {
+    agent any // <--- Esto equivale al 'node' y soluciona el error
+    
+    stages {
+        stage('EKS Check') {
+            steps {
+                withCredentials([
+                    string(credentialsId: 'aws-access-key-id', variable: 'AWS_ACCESS_KEY_ID'),
+                    string(credentialsId: 'aws-secret-access-key', variable: 'AWS_SECRET_ACCESS_KEY'),
+                    string(credentialsId: 'aws-session-token', variable: 'AWS_SESSION_TOKEN')
+                ]) {
+                    sh "aws eks update-kubeconfig --name demo-cluster --region us-east-1"
+                    sh "kubectl get nodes"
+                    sh 'cat /etc/os-release' 
+                    sh 'whoami'             
+                    sh 'aws --version'  
+                }
+            }
         }
     }
 }
 ```
+
 
 
 
