@@ -13,7 +13,7 @@ https://aws.plainenglish.io/building-an-end-to-end-ci-cd-pipeline-with-jenkins-a
 Use Secret Text in Management-Credentials, no "aws credentials".
 ```
 ```
-node { // <--- Esto es lo que te falta, le asigna un espacio de trabajo
+node {
     stage('Deploy to EKS') {
         withCredentials([
             string(credentialsId: 'aws-access-key-id', variable: 'AWS_ACCESS_KEY_ID'),
@@ -30,5 +30,6 @@ node { // <--- Esto es lo que te falta, le asigna un espacio de trabajo
     }
 }
 ```
+
 
 
