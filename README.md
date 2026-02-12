@@ -21,13 +21,14 @@ node { // <--- Esto es lo que te falta, le asigna un espacio de trabajo
             string(credentialsId: 'aws-session-token', variable: 'AWS_SESSION_TOKEN')
         ]) {
             // Ahora 'sh' sí sabe dónde ejecutarse
-            sh "aws eks update-kubeconfig --name TU_CLUSTER_NAME --region us-east-1"
+            sh "aws eks update-kubeconfig --name demo-cluster --region us-east-1"
             sh "kubectl get pods"
-            sh 'cat /etc/os-release' // Te dirá qué Linux es
-            sh 'whoami'             // Te dirá qué usuario está usando Jenkins
-            sh 'aws --version'      // Verificará si tienes la herramienta instalada
+            sh 'cat /etc/os-release' 
+            sh 'whoami'             
+            sh 'aws --version'     
         }
     }
 }
 ```
+
 
