@@ -10,7 +10,7 @@ https://aws.plainenglish.io/building-an-end-to-end-ci-cd-pipeline-with-jenkins-a
 
 ## Jenkins Pipeline 
 ```
-Credenciales como Secret Text, no como aws credentials en Jenkins.
+Use Secret Text in Management-Credentials, no "aws credentials".
 ```
 ```
 node { // <--- Esto es lo que te falta, le asigna un espacio de trabajo
@@ -30,3 +30,4 @@ node { // <--- Esto es lo que te falta, le asigna un espacio de trabajo
     }
 }
 ```
+
